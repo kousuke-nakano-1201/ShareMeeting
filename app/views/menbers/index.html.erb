@@ -1,0 +1,9 @@
+<h1>社員一覧</h1>
+
+<ul>
+  <% @menbers.each do |menber| %>
+    <li><%= link_to menber.name, menber %></li>
+  <% end %>
+</ul>
+
+<%= link_to '社員新規登録', new_menber_path %>

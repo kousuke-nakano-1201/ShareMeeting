@@ -1,0 +1,5 @@
+<h1> <%= @menber.name %> の詳細ページ</h1>
+
+<%= link_to '一覧に戻る', menbers_path %>
+<%= link_to '社員の登録情報を編集する', edit_menber_path(@menber) %>
+<%= link_to '社員の登録情報を削除する', @menber, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

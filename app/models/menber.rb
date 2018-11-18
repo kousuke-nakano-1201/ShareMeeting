@@ -1,0 +1,2 @@
+class Menber < ApplicationRecord
+end
