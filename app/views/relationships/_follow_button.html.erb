@@ -1,0 +1,16 @@
+<% unless menber1 == menber2 %>
+  <% if menber1.following?(menber2) %>
+    <%= form_for(menber1.relationships.find_by(follow_id: menber2.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :menber_id, menber1.id %>
+      <%= hidden_field_tag :follow_id, menber2.id %>
+      <%= f.submit 'キャンセル', class: 'btn btn-danger' %>
+    <% end %>
+  <% else %>
+    <%# binding.pry %>
+    <%= form_for(menber1.relationships.build) do |f| %>
+      <%= hidden_field_tag :menber_id, menber1.id %>  
+      <%= hidden_field_tag :follow_id, menber2.id %>
+      <%= f.submit '話したい！', class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+<% end %>

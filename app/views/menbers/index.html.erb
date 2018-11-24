@@ -1,9 +1,39 @@
 <h1>社員一覧</h1>
-
-<ul>
-  <% @menbers.each do |menber| %>
-    <li><%= link_to menber.name, menber %></li>
-  <% end %>
-</ul>
-
-<%= link_to '社員新規登録', new_menber_path %>
+<% if @menbers.any? %>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>出欠</th>
+      <th>話したい人１</th>
+      <th>話したい人２</th>
+      <th>話したい人３</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <% @menbers.each do |menber| %>
+      <tr>
+        <td> <%= link_to menber.name, menber %> </td>
+        <% if menber.attend %>
+　　　　  <td> <%= '出席' %> </td>
+　　　　<% else %>
+　　　　  <td> <%= '欠席' %> </td> 
+　　　　<% end %>
+　　　　<% count = 3 %>
+　　　　<% @menbers.each do |menber2| %>
+　　　　  <% if menber.following?(menber2) %>
+　　　　    <td> <%= menber2.name %> </td>
+　　　　    <% count -= 1 %>
+　　　　  <% end %>
+　　　　<% end %>
+　　　　<% if count > 0 %>
+　　　  　<% (1..count).each do |number|%>
+　　　　    <td></td>
+　　　  　<% end %>
+　　　　<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<%= link_to '社員新規登録', new_menber_path, class: "btn btn-primary"%>

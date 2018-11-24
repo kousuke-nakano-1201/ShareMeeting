@@ -1,4 +1,50 @@
 <h1> <%= @menber.name %> の詳細ページ</h1>
+<% if @menbers.any? %>
+<h3>話したい！ 社員一覧</h3>
+<h5>話したい！ に登録できるのは３人までです．</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>話したい！</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menbers.each do |menber| %>
+      <% if @menber.following?(menber) %>
+        <tr>
+          <td> <%= link_to menber.name, menber %> </td>
+          <td> <%= render 'relationships/follow_button', menber1: @menber, menber2: menber %> </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>その他の社員一覧</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>話したい！</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menbers.each do |menber| %>
+      <% if !(@menber.following?(menber)) && @menber.id != menber.id%>
+        <tr>
+          <td> <%= link_to menber.name, menber %> </td>
+          <% if @count_followings >= 3 %>
+            <td>　</td>
+          <% else %>
+            <td><%= render 'relationships/follow_button', menber1: @menber, menber2: menber %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
 
 <%= link_to '一覧に戻る', menbers_path %>
 <%= link_to '社員の登録情報を編集する', edit_menber_path(@menber) %>

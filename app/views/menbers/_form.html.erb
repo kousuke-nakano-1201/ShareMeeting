@@ -1,0 +1,9 @@
+<%= form_for(menber) do |f| %>
+  <%= f.label :name, '名前' %>
+  <%= f.text_field :name %>
+    <%= f.label :attend, '出欠' %>
+  <%= f.check_box :attend, :as=>:boolean %>
+
+
+  <%= f.submit '登録' %>
+<% end %>

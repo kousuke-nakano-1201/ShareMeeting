@@ -1,10 +1,5 @@
 <h1>社員新規登録ページ</h1>
 
-<%= form_for(@menber) do |f| %>
-  <%= f.label :name, '名前' %>
-  <%= f.text_field :name %>
-
-  <%= f.submit '登録' %>
-<% end %>
+<%= render 'form', menber: @menber %>
 
 <%= link_to '一覧に戻る', menbers_path %>

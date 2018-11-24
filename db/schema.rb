@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181118054534) do
+ActiveRecord::Schema.define(version: 20181124204554) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -26,4 +26,16 @@ ActiveRecord::Schema.define(version: 20181118054534) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "menber_id"
+    t.integer  "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_relationships_on_follow_id", using: :btree
+    t.index ["menber_id", "follow_id"], name: "index_relationships_on_menber_id_and_follow_id", unique: true, using: :btree
+    t.index ["menber_id"], name: "index_relationships_on_menber_id", using: :btree
+  end
+
+  add_foreign_key "relationships", "menbers"
+  add_foreign_key "relationships", "menbers", column: "follow_id"
 end

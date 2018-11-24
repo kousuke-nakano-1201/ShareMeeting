@@ -1,10 +1,14 @@
 class MenbersController < ApplicationController
+  before_action :require_user_logged_in
+  
   def index
     @menbers = Menber.all
   end
 
   def show
     @menber = Menber.find(params[:id])
+    @menbers = Menber.all
+    counts(@menber)
   end
 
   def new
@@ -47,6 +51,6 @@ class MenbersController < ApplicationController
   private
 
   def menber_params
-    params.require(:menber).permit(:name)
+    params.require(:menber).permit(:name, :attend)
   end
 end
