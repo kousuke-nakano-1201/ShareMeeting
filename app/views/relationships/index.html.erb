@@ -1,0 +1,25 @@
+<h1>グループ一覧</h1>
+
+<% menbers_group, groups_count, menbers_point= calculation(@menbers) %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>グループ名</th>
+      <% (1..6).each do |nanber| %>
+        <th>メンバー<%= nanber %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% (0..(groups_count-1)).each do |group| %>
+      <tr>
+        <td>グループ<%= group+1 %></td>
+        <% @menbers.each_with_index do |menber, index| %>
+          <% if menbers_group[index] == group%>
+            <td><%= menber.name %>（<%= menbers_point[index] %>）</td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

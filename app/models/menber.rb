@@ -19,4 +19,5 @@ class Menber < ApplicationRecord
   def following?(other_menber)
     self.followings.include?(other_menber)
   end
+
 end

@@ -15,25 +15,26 @@
       <tr>
         <td> <%= link_to menber.name, menber %> </td>
         <% if menber.attend %>
-　　　　  <td> <%= '出席' %> </td>
-　　　　<% else %>
-　　　　  <td> <%= '欠席' %> </td> 
-　　　　<% end %>
-　　　　<% count = 3 %>
-　　　　<% @menbers.each do |menber2| %>
-　　　　  <% if menber.following?(menber2) %>
-　　　　    <td> <%= menber2.name %> </td>
-　　　　    <% count -= 1 %>
-　　　　  <% end %>
-　　　　<% end %>
-　　　　<% if count > 0 %>
-　　　  　<% (1..count).each do |number|%>
-　　　　    <td></td>
-　　　  　<% end %>
-　　　　<% end %>
+          <td> <%= '出席' %> </td>
+        <% else %>
+          <td> <%= '欠席' %> </td> 
+        <% end %>
+        <% count = 3 %>
+        <% @menbers.each do |menber2| %>
+          <% if menber.following?(menber2) %>
+            <td> <%= menber2.name %> </td>
+            <% count -= 1 %>
+          <% end %>
+        <% end %>
+        <% if count > 0 %>
+          <% (1..count).each do |number|%>
+            <td></td>
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 <% end %>
 <%= link_to '社員新規登録', new_menber_path, class: "btn btn-primary"%>
+<%= link_to 'グループ作成', relationships_path, class: "btn btn-success"%>

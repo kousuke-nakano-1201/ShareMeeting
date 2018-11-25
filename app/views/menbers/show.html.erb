@@ -46,6 +46,6 @@
 </table>
 <% end %>
 
-<%= link_to '一覧に戻る', menbers_path %>
-<%= link_to '社員の登録情報を編集する', edit_menber_path(@menber) %>
-<%= link_to '社員の登録情報を削除する', @menber, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<%= link_to '一覧に戻る', menbers_path , class: "btn btn-success"%>
+<%= link_to '社員の登録情報を編集する', edit_menber_path(@menber), class: "btn btn-default" %>
+<%= link_to '社員の登録情報を削除する', @menber, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } , class: "btn btn-danger"%>
